@@ -1,0 +1,117 @@
+body {
+  font: 16px/26px "Open Sans",Helvetica,Arial,sans-serif;
+  color: #333;
+}
+div {
+  display: block;
+}
+a {
+  color: #008fd5;
+  text-decoration: none;
+  padding: 10px;
+}
+a:hover {
+  background-color: #b3d4fc;
+}
+input {
+ 
+}
+.headerWrapper {
+  border-bottom: 1px solid #eee;
+}
+.header-container {
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  width: 80%;
+}
+.header-container h1 {
+  display: inline-block;
+  margin: 10px 0 25px;
+  font-size: 22px;
+  
+}
+.readNowWrapper {
+  display: inline-block;
+}
+.addUrl {
+  display: inline-block;
+  margin: 10px 0 25px;
+}
+.addUrl input[type="text"] {
+  padding: 5px, 10px;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  border: 1px solid #eee;
+}
+
+.addUrl input[type="submit"] {
+  background: 0 0;
+  border: none;
+  color: inherit;
+  font-size: 12px;
+  letter-spacing: .08em;
+  padding: 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.showAll {
+  display: inline-block;
+  margin: 10px 0 25px;
+  top: 0;
+  right: 20px;
+}
+.showAll a {
+  color: inherit;
+  font-size: 12px;
+  letter-spacing: .08em;
+  padding: 10px;
+  text-transform: uppercase;
+}
+.search {
+  display: inline-block;
+  margin: 10px 0 25px;
+  float: right;
+}
+.search input {
+  background: #fcfcfc;
+  border: 1px solid #fcfcfc;
+  padding: 5px 10px;
+  width: 100%
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.content-container {
+  margin: 0 auto;
+  padding: 10px 10%;
+  width: 80%;
+}
+
+.article {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 30px;
+  padding: 10px 0 30px;
+  width: 24%;
+  vertical-align: top;
+}
+.article p {
+  color: #666;
+}
+.article h1 {
+  color: #000;
+  font-size: 22px;
+  font-weight: 400;
+}
+.footer-container {
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  width: 80%;
+}
