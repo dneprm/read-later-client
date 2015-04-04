@@ -1,11 +1,13 @@
 var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var ReadNowComponent = React.createClass({
   render: function() {
     return (
       <div className="readNowWrapper">
           <h1>
-            <a href="#">Read Now</a>
+            <Link to="app">Read Now</Link>
           </h1>
           <div className="addUrl">
             <form>

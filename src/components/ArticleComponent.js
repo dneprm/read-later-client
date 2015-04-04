@@ -1,4 +1,6 @@
 var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var ProductComponent = React.createClass({
   makeContentShort: function() {
@@ -9,9 +11,9 @@ var ProductComponent = React.createClass({
     return (
         <div className="article">
           <div className="article-header-content">
-            <a href="#">
+            <Link to="articles">
               <h1>{this.props.article.title}</h1>
-            </a>
+            </Link>
             <p>{this.makeContentShort()}</p>
           </div>
           <div className="article-footer">
