@@ -4,7 +4,7 @@ var HeaderComponent = require('./HeaderComponent');
 //var ContentComponent = require('./ContentComponent');
 var FooterComponent = require('./FooterComponent');
 
-var ArticleStore = require('../stores/ArticleStore');
+var ArticlesStore = require('../stores/ArticlesStore');
 
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
