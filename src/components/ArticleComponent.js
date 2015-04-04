@@ -11,7 +11,7 @@ var ProductComponent = React.createClass({
     return (
         <div className="article">
           <div className="article-header-content">
-            <Link to="articles">
+            <Link to="articles" params={{articleId: this.props.article.url}}>
               <h1>{this.props.article.title}</h1>
             </Link>
             <p>{this.makeContentShort()}</p>

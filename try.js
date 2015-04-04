@@ -1,6 +1,6 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-function start () {
+/*function start () {
   var xhr = new XMLHttpRequest();
   
   //var params = 'url='+'http://swannodette.github.io/2015/03/10/scripting-clojurescript-with-javascript/';
@@ -12,4 +12,20 @@ function start () {
 }
 //'url=http://swannodette.github.io/2015/03/10/scripting-clojurescript-with-javascript/'
 
-start();
+start();*/
+
+var Firebase = require('firebase');
+var fb = new Firebase("https://glaring-fire-8850.firebaseio.com/");
+var a;
+ fb.child("articles").on("value", function(snapshot) {
+  //console.log(snapshot.val());
+  a = snapshot.val();
+}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+});
+
+
+console.log(a);
+
+
+

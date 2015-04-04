@@ -12,7 +12,7 @@
 8 verbose unsafe-perm in lifecycle true
 9 info read-later-client@0.0.0 Failed to exec watch script
 10 error read-later-client@0.0.0 watch: `webpack --watch`
-10 error Exit status 255
+10 error Exit status 137
 11 error Failed at the read-later-client@0.0.0 watch script.
 11 error This is most likely a problem with the read-later-client package,
 11 error not with npm itself.

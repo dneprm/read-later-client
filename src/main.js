@@ -13,7 +13,7 @@ window.React = React;
 
 var routes = (
   <Route name="app" path="/" handler={AppComponent}>
-    <Route name="articles" path="article" handler={SingleArticleComponent}/>
+    <Route name="articles" path="/articles/:articleId" handler={SingleArticleComponent}/>
     <DefaultRoute handler={ContentComponent}/>
   </Route>
   /*<Route name="toolbar" path="" handler={HeaderComponent}>
