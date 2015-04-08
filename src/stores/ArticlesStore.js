@@ -1,32 +1,59 @@
 var Reflux = require('reflux');
-//var assign = require('object-assign');
+var assign = require('object-assign');
 
 var Actions = require('../actions/ArticleActions');
-
-var Firebase = require('firebase');
-var fb = new Firebase("https://glaring-fire-8850.firebaseio.com/");
-//var products = require('../products');
-//var Backend = require('../utils/backend');
+var FirebaseStore = require('../stores/FirebaseStore');
 
 
-var _articles = [];
+
+
+
+//var _articles = [];
 
 var ArticlesStore = Reflux.createStore({
   listenables: Actions,
   init: function() {
-    fb.child("articles").on("value", Actions.receiveArticleData)
+    this.listenTo(FirebaseStore, Actions.receiveArticleData);
   },
-  receiveArticleData: function(snapshot) {
+  receiveArticleData: function(articles) {
     /*var fbdata = snapshot.val();
     for (var key in fbdata) {
       _articles.push(fbdata[key])
     };*/
     
-    _articles = snapshot.val();
-    this.trigger(_articles);
-    
+   this.articles = articles|| {};
+    this.trigger(this.getArticles());
   },
- 
+  getArticle: function(id) {
+    var arr=[];
+    var dataObj = this.articles;
+    var idObj = {};
+    
+    for (var key in dataObj) {
+      idObj = {id: key}
+      var articleObj = assign({}, dataObj[key], idObj);
+      arr.push(articleObj);
+    }
+    console.log(dataObj);
+    var singleArticle = arr.filter(function(article){
+         return article.id == id
+    })[0]; 
+    return singleArticle;
+    console.log(singleArticle)
+  },
+  getArticles: function() {
+    var arr=[];
+    var dataObj = this.articles;
+    var idObj = {};
+    
+    for (var key in dataObj) {
+      idObj = {id: key}
+      var articleObj = assign({}, dataObj[key], idObj);
+      arr.push(articleObj);
+    }
+    //console.log(dataObj);
+    return arr;
+  }
   /*addToCart: function(code) {
     var cartProduct;
     var product = products.filter(function(product) {

@@ -10,21 +10,21 @@ var ContentAllComponent = React.createClass({
   mixins: [Reflux.connect(ArticlesStore, 'articles')],
   
   getInitialState: function() {
-    return { articles: [] };
+    return {articles: ArticlesStore.getArticles()};
   },
   render: function() {
-    console.log(this.state.articles);
+    //console.log(this.state.articles);
     /*var articleList = this.state.articles.map(function(article, index){
       return (<ArticleComponent article={article} key={index} />)
     }.bind(this));*/
     var arr=[];
     var dataObj = this.state.articles;
-    var idObj = {};
+    //var idObj = {};
     
     for (var key in dataObj) {
-      idObj = {id: key}
-      var articleObj = assign({}, dataObj[key], idObj);
-      arr.push(articleObj);
+      //idObj = {id: key}
+      //var articleObj = assign({}, dataObj[key], idObj);
+      arr.push(dataObj[key]);
     }
     //console.log(arr);
     var articleList = arr.map(function(article, index){

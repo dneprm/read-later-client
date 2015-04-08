@@ -7,22 +7,22 @@ var ArticlesStore = require('../stores/ArticlesStore');
 
 
 var ContentOneComponent = React.createClass({
-  mixins: [Reflux.connect(ArticlesStore, 'articles')],
+  mixins: [Reflux.connect(ArticlesStore, 'article')],
   
   getInitialState: function() {
-    return { articles: [] };
+    return { article: ArticlesStore.getArticle(this.context.router.getCurrentParams()['articleId']) };
   },
   contextTypes: {
     router: React.PropTypes.func
   },
   render: function() {
-    //console.log(this.context.router.getCurrentParams()['articleId']);
-    console.log(this.state.articles)
+    console.log(this.state.article)
+    //console.log(a);
     return (
       <div className="contentWrapper">
       <HeaderOneComponent />
         <div className="content-container">
-          <SingleArticleComponent />
+          <SingleArticleComponent article={this.state.article} />
         </div>
       </div>
     );

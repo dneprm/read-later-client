@@ -3,29 +3,21 @@ var Reflux = require('reflux');
 var Router = require('react-router');
 var Link = Router.Link;
 var ArticlesStore = require('../stores/ArticlesStore');
-console.log(document.location.origin);
+//console.log(document.location.origin);
 //console.log(this.context.router.getCurrentParams()['articleId'])
 var SingleArticleComponent = React.createClass({
- mixins: [Reflux.connect(ArticlesStore, 'articles')],
-  
-  getInitialState: function() {
-    return { articles: [] };
-  },
  
   render: function() {
-    //console.log(window.location.href);
-    //console.log(document.location.origin);
-    //console.log(this.state.articles);
-    var str = window.location.hash;
-    //str.slice(0, 11);
-    //console.log(this.context.router.getCurrentParams()['articleId'])
-   //console.log(str);
-    var articlesListObj = this.state.articles;
-    for (var key in articlesListObj) {
-      if (key==="") {return}
-    }
+   // console.log(this.props.article)
+    
     return (
-     <div><h1>Single article</h1></div>
+     <div className="">
+          <div className="">
+              <h1>{this.props.article.title}</h1>
+              <a href="#">{this.props.article.url}</a>
+              <p> {this.props.article.content} </p>
+          </div>
+        </div>
     );
   }
 })
