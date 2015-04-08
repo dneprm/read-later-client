@@ -6,24 +6,19 @@ var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 
 var AppComponent = require('./components/AppComponent');
-var SingleArticleComponent = require('./components/SingleArticleComponent');
-var ContentComponent = require('./components/ContentComponent');
-var articles = require('./articles');
+var ContentOneComponent = require('./components/ContentOneComponent');
+var ContentAllComponent = require('./components/ContentAllComponent');
 window.React = React;
 
 var routes = (
   <Route name="app" path="/" handler={AppComponent}>
-    <Route name="articles" path="/articles/:articleId" handler={SingleArticleComponent}/>
-    <DefaultRoute handler={ContentComponent}/>
+    <Route name="article" path="/articles/:articleId" handler={ContentOneComponent}/>
+    <Route name="articles" path="/articles" handler={ContentAllComponent}/>
+    <DefaultRoute handler={ContentAllComponent}/>
   </Route>
-  /*<Route name="toolbar" path="" handler={HeaderComponent}>
-    <Route name="" handler={S}/>
-    <DefaultRoute handler={}/>
-  </Route>*/
 );
 
-Router.run(routes, function (Handler) {
-  React.render(<Handler articles={articles}/>, document.getElementById('app'));
+Router.run(routes, Router.HistoryLocation, function (Handler) {
+  React.render(<Handler />, document.getElementById('app'));
 });
 
-//React.render(<AppComponent articles={articles} />, document.getElementById('app'));

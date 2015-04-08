@@ -4,7 +4,7 @@ var ShowAllComponent = require('./ShowAllComponent');
 var SearchComponent = require('./SearchComponent');
 
 
-var HeaderComponent = React.createClass({
+var HeaderAllComponent = React.createClass({
   render: function() {
     return (
       <div className="headerWrapper">
@@ -18,4 +18,4 @@ var HeaderComponent = React.createClass({
   }
 })
 
-module.exports = HeaderComponent;
+module.exports = HeaderAllComponent;

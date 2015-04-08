@@ -14,13 +14,19 @@ var _articles = [];
 var ArticlesStore = Reflux.createStore({
   listenables: Actions,
   init: function() {
-    fb.child("articles").on("value", Actions.recieveArticleData)
+    fb.child("articles").on("value", Actions.receiveArticleData)
   },
-  recieveArticleData: function(snapshot) {
+  receiveArticleData: function(snapshot) {
+    /*var fbdata = snapshot.val();
+    for (var key in fbdata) {
+      _articles.push(fbdata[key])
+    };*/
+    
     _articles = snapshot.val();
     this.trigger(_articles);
     
-  }
+  },
+ 
   /*addToCart: function(code) {
     var cartProduct;
     var product = products.filter(function(product) {

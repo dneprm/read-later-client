@@ -3,7 +3,7 @@ var Reflux = require('reflux');
 //var Backend = require('../utils/backend');
 
 var Actions = Reflux.createActions([
-  "recieveArticleData"
+  "receiveArticleData"
   
 ]);
 
