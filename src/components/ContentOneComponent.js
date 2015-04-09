@@ -20,7 +20,7 @@ var ContentOneComponent = React.createClass({
     //console.log(a);
     return (
       <div className="contentWrapper">
-      <HeaderOneComponent />
+      <HeaderOneComponent article={this.state.article}/>
         <div className="content-container">
           <SingleArticleComponent article={this.state.article} />
         </div>

@@ -5,12 +5,8 @@ var Reflux = require('reflux');
 var Actions = Reflux.createActions([
   "receiveArticleData",
   "addUrl",
-  "removeArticle"
+  "removeArticle",
+  "changeArticleReadState"
 ]);
-
-/*Actions.addToCart.preEmit = Backend.add;
-Actions.removeFromCart.preEmit = Backend.remove;
-Actions.cartChangeQuantity.preEmit = Backend.changeQuantity;*/
-
 
 module.exports = Actions;

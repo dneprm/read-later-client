@@ -2,8 +2,8 @@ var Reflux = require('reflux');
 
 var Actions = Reflux.createActions([
   "receiveArticlesData",
-  "removeArticle"
-  
+  "removeArticle",
+  "updateArticle"
 ]);
 
 

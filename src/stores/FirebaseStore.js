@@ -16,7 +16,10 @@ var FirebaseStore = Reflux.createStore({
     this.trigger(snapshot.val());
   },
   removeArticle: function(id) {
-    fbChild.child(id + "/").remove();
+    fbChild.child(id).remove();
+  },
+  updateArticle: function(id, value) {
+    fbChild.child(id).update(value);
   }
   
 });

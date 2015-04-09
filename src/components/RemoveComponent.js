@@ -15,7 +15,7 @@ var RemoveComponent = React.createClass({
     router: React.PropTypes.func
   },
   render: function() {
-    console.log("hey")
+    //console.log("hey")
     //console.log(window.location)
     //console.log(this.context.router.getCurrentParams()['articleId'])
     return (

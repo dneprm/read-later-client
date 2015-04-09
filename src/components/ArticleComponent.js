@@ -9,19 +9,18 @@ var Link = Router.Link;
 
 var ArticleComponent = React.createClass({
   makeContentShort: function() {
-    var context = this.props.article.content;
+    /*var context = this.props.article.content;
     var replaceSymbol = /<[^>]+>/g;
     context = context.replace(replaceSymbol, "");
     var shortBody = context.substr(0,300)+"...";
 
-    return shortBody;
-    /*var contentShort = this.props.article.content.slice(0,250) + "...";
-      return contentShort;*/
+    return shortBody;*/
+    var contentShort = this.props.article.content.slice(0,250) + "...";
+      return contentShort;
     },
- /* articleContent:function() {
+  articleContent:function() {
     return { __html: this.props.article.content }
   },
-  */
   render: function() {
    //console.log(this.props.article);
     return (
@@ -30,7 +29,7 @@ var ArticleComponent = React.createClass({
             <Link to="article" params={{articleId: this.props.article.id}}>
               <h1>{this.props.article.title}</h1>
             </Link>
-            <div>{this.makeContentShort()} </div>
+            <div dangerouslySetInnerHTML={this.articleContent()} />
           </div>
           <div className="article-footer">
             <a href="#">{this.props.article.url}</a>

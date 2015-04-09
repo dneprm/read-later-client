@@ -14,10 +14,12 @@ var ArticlesStore = Reflux.createStore({
   listenables: Actions,
   init: function() {
     this.listenTo(FirebaseStore, Actions.receiveArticleData);
+    //this.articles= {};
   },
   receiveArticleData: function(articles) {
     this.articles = articles|| {};
     this.trigger(this.getArticles());
+    
   },
   addUrl: function(url) {
     request.post('http://mysterious-depths-6243.herokuapp.com/scraper')
@@ -29,6 +31,9 @@ var ArticlesStore = Reflux.createStore({
   },
   removeArticle: function(id) {
     FirebaseActions.removeArticle(id);
+  },
+  changeArticleReadState: function(id, newValue) {
+    FirebaseActions.updateArticle(id, newValue);
   },
   getArticle: function(id) {
     var arr=[];

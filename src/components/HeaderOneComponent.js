@@ -11,7 +11,7 @@ var HeaderOneComponent = React.createClass({
         <div className="header-container">
           <ReadNowComponent />
           <RemoveComponent />
-          <MarkAsReadComponent />
+          <MarkAsReadComponent article={this.props.article}/>
         </div>
       </div>
     );
