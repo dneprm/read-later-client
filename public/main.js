@@ -389,8 +389,13 @@
 	var SingleArticleComponent = React.createClass({
 	  displayName: "SingleArticleComponent",
 	
-	  articleContent: function articleContent() {
-	    return { __html: this.props.article.content };
+	  showContent: function showContent() {
+	    var context = this.props.article.content;
+	    var replaceSymbol = /<[^>]+>/g;
+	    context = context.replace(replaceSymbol, "");
+	    return context;
+	    /*var contentShort = this.props.article.content.slice(0,250) + "...";
+	      return contentShort;*/
 	  },
 	  render: function render() {
 	    // console.log(this.props.article)
@@ -411,7 +416,12 @@
 	          { href: "#" },
 	          this.props.article.url
 	        ),
-	        React.createElement("div", { dangerouslySetInnerHTML: this.articleContent() })
+	        React.createElement(
+	          "div",
+	          null,
+	          " ",
+	          this.showContent()
+	        )
 	      )
 	    );
 	  }
@@ -436,14 +446,19 @@
 	  displayName: "ArticleComponent",
 	
 	  makeContentShort: function makeContentShort() {
+	    var context = this.props.article.content;
+	    var replaceSymbol = /<[^>]+>/g;
+	    context = context.replace(replaceSymbol, "");
+	    var shortBody = context.substr(0, 300) + "...";
 	
-	    var contentShort = this.props.article.content.slice(0, 250) + "...";
-	    return contentShort;
+	    return shortBody;
+	    /*var contentShort = this.props.article.content.slice(0,250) + "...";
+	      return contentShort;*/
 	  },
-	  articleContent: function articleContent() {
-	    return { __html: this.props.article.content };
-	  },
-	
+	  /* articleContent:function() {
+	     return { __html: this.props.article.content }
+	   },
+	   */
 	  render: function render() {
 	    //console.log(this.props.article);
 	    return React.createElement(
@@ -461,7 +476,12 @@
 	            this.props.article.title
 	          )
 	        ),
-	        React.createElement("div", { dangerouslySetInnerHTML: this.articleContent() })
+	        React.createElement(
+	          "div",
+	          null,
+	          this.makeContentShort(),
+	          " "
+	        )
 	      ),
 	      React.createElement(
 	        "div",
@@ -6129,27 +6149,27 @@
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(130);
-	var ReactBrowserEventEmitter = __webpack_require__(131);
+	var DOMProperty = __webpack_require__(129);
+	var ReactBrowserEventEmitter = __webpack_require__(130);
 	var ReactCurrentOwner = __webpack_require__(47);
 	var ReactElement = __webpack_require__(48);
 	var ReactElementValidator = __webpack_require__(49);
-	var ReactEmptyComponent = __webpack_require__(132);
+	var ReactEmptyComponent = __webpack_require__(131);
 	var ReactInstanceHandles = __webpack_require__(53);
 	var ReactInstanceMap = __webpack_require__(87);
-	var ReactMarkupChecksum = __webpack_require__(133);
+	var ReactMarkupChecksum = __webpack_require__(132);
 	var ReactPerf = __webpack_require__(55);
 	var ReactReconciler = __webpack_require__(57);
 	var ReactUpdateQueue = __webpack_require__(85);
-	var ReactUpdates = __webpack_require__(134);
+	var ReactUpdates = __webpack_require__(133);
 	
 	var emptyObject = __webpack_require__(93);
-	var containsNode = __webpack_require__(135);
-	var getReactRootElementInContainer = __webpack_require__(136);
-	var instantiateReactComponent = __webpack_require__(137);
+	var containsNode = __webpack_require__(134);
+	var getReactRootElementInContainer = __webpack_require__(135);
+	var instantiateReactComponent = __webpack_require__(136);
 	var invariant = __webpack_require__(65);
-	var setInnerHTML = __webpack_require__(138);
-	var shouldUpdateReactComponent = __webpack_require__(139);
+	var setInnerHTML = __webpack_require__(137);
+	var shouldUpdateReactComponent = __webpack_require__(138);
 	var warning = __webpack_require__(68);
 	
 	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
@@ -7134,7 +7154,7 @@
 	var ReactFragment = __webpack_require__(83);
 	var ReactPropTypeLocationNames = __webpack_require__(90);
 	
-	var emptyFunction = __webpack_require__(129);
+	var emptyFunction = __webpack_require__(139);
 	
 	/**
 	 * Collection of methods that allow declaration and validation of props that are
@@ -7612,12 +7632,12 @@
 	
 	var ReactElement = __webpack_require__(48);
 	var ReactInstanceHandles = __webpack_require__(53);
-	var ReactMarkupChecksum = __webpack_require__(133);
+	var ReactMarkupChecksum = __webpack_require__(132);
 	var ReactServerRenderingTransaction =
 	  __webpack_require__(141);
 	
 	var emptyObject = __webpack_require__(93);
-	var instantiateReactComponent = __webpack_require__(137);
+	var instantiateReactComponent = __webpack_require__(136);
 	var invariant = __webpack_require__(65);
 	
 	/**
@@ -8200,7 +8220,7 @@
 	
 	"use strict";
 	
-	var emptyFunction = __webpack_require__(129);
+	var emptyFunction = __webpack_require__(139);
 	
 	/**
 	 * Similar to invariant but only logs a warning if the condition is not met.
@@ -10841,7 +10861,7 @@
 	var ReactCurrentOwner = __webpack_require__(47);
 	var ReactElement = __webpack_require__(48);
 	var ReactInstanceMap = __webpack_require__(87);
-	var ReactUpdates = __webpack_require__(134);
+	var ReactUpdates = __webpack_require__(133);
 	
 	var assign = __webpack_require__(59);
 	var invariant = __webpack_require__(65);
@@ -11669,7 +11689,7 @@
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(130);
+	var DOMProperty = __webpack_require__(129);
 	
 	var quoteAttributeValueForBrowser = __webpack_require__(160);
 	var warning = __webpack_require__(68);
@@ -11918,9 +11938,9 @@
 	'use strict';
 	
 	var CSSPropertyOperations = __webpack_require__(161);
-	var DOMProperty = __webpack_require__(130);
+	var DOMProperty = __webpack_require__(129);
 	var DOMPropertyOperations = __webpack_require__(97);
-	var ReactBrowserEventEmitter = __webpack_require__(131);
+	var ReactBrowserEventEmitter = __webpack_require__(130);
 	var ReactComponentBrowserEnvironment =
 	  __webpack_require__(98);
 	var ReactMount = __webpack_require__(54);
@@ -12970,7 +12990,7 @@
 	var EventPluginHub = __webpack_require__(168);
 	var EventPropagators = __webpack_require__(164);
 	var ExecutionEnvironment = __webpack_require__(62);
-	var ReactUpdates = __webpack_require__(134);
+	var ReactUpdates = __webpack_require__(133);
 	var SyntheticEvent = __webpack_require__(169);
 	
 	var isEventSupported = __webpack_require__(163);
@@ -13570,7 +13590,7 @@
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(130);
+	var DOMProperty = __webpack_require__(129);
 	var ExecutionEnvironment = __webpack_require__(62);
 	
 	var MUST_USE_ATTRIBUTE = DOMProperty.injection.MUST_USE_ATTRIBUTE;
@@ -13780,7 +13800,7 @@
 	
 	var EventConstants = __webpack_require__(81);
 	
-	var emptyFunction = __webpack_require__(129);
+	var emptyFunction = __webpack_require__(139);
 	
 	var topLevelTypes = EventConstants.topLevelTypes;
 	
@@ -13874,11 +13894,11 @@
 	
 	'use strict';
 	
-	var ReactUpdates = __webpack_require__(134);
+	var ReactUpdates = __webpack_require__(133);
 	var Transaction = __webpack_require__(172);
 	
 	var assign = __webpack_require__(59);
-	var emptyFunction = __webpack_require__(129);
+	var emptyFunction = __webpack_require__(139);
 	
 	var RESET_BATCHED_UPDATES = {
 	  initialize: emptyFunction,
@@ -14132,7 +14152,7 @@
 	var ReactPerf = __webpack_require__(55);
 	
 	var invariant = __webpack_require__(65);
-	var setInnerHTML = __webpack_require__(138);
+	var setInnerHTML = __webpack_require__(137);
 	
 	/**
 	 * Errors for properties that should not be updated with `updatePropertyById()`.
@@ -14349,7 +14369,7 @@
 	var ReactClass = __webpack_require__(45);
 	var ReactElement = __webpack_require__(48);
 	var ReactMount = __webpack_require__(54);
-	var ReactUpdates = __webpack_require__(134);
+	var ReactUpdates = __webpack_require__(133);
 	
 	var assign = __webpack_require__(59);
 	var invariant = __webpack_require__(65);
@@ -14582,7 +14602,7 @@
 	var ReactBrowserComponentMixin = __webpack_require__(108);
 	var ReactClass = __webpack_require__(45);
 	var ReactElement = __webpack_require__(48);
-	var ReactUpdates = __webpack_require__(134);
+	var ReactUpdates = __webpack_require__(133);
 	
 	var assign = __webpack_require__(59);
 	
@@ -14765,7 +14785,7 @@
 	var ReactBrowserComponentMixin = __webpack_require__(108);
 	var ReactClass = __webpack_require__(45);
 	var ReactElement = __webpack_require__(48);
-	var ReactUpdates = __webpack_require__(134);
+	var ReactUpdates = __webpack_require__(133);
 	
 	var assign = __webpack_require__(59);
 	var invariant = __webpack_require__(65);
@@ -14908,7 +14928,7 @@
 	var PooledClass = __webpack_require__(82);
 	var ReactInstanceHandles = __webpack_require__(53);
 	var ReactMount = __webpack_require__(54);
-	var ReactUpdates = __webpack_require__(134);
+	var ReactUpdates = __webpack_require__(133);
 	
 	var assign = __webpack_require__(59);
 	var getEventTarget = __webpack_require__(178);
@@ -15089,17 +15109,17 @@
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(130);
+	var DOMProperty = __webpack_require__(129);
 	var EventPluginHub = __webpack_require__(168);
 	var ReactComponentEnvironment = __webpack_require__(180);
 	var ReactClass = __webpack_require__(45);
-	var ReactEmptyComponent = __webpack_require__(132);
-	var ReactBrowserEventEmitter = __webpack_require__(131);
+	var ReactEmptyComponent = __webpack_require__(131);
+	var ReactBrowserEventEmitter = __webpack_require__(130);
 	var ReactNativeComponent = __webpack_require__(94);
 	var ReactDOMComponent = __webpack_require__(99);
 	var ReactPerf = __webpack_require__(55);
 	var ReactRootIndex = __webpack_require__(128);
-	var ReactUpdates = __webpack_require__(134);
+	var ReactUpdates = __webpack_require__(133);
 	
 	var ReactInjection = {
 	  Component: ReactComponentEnvironment.injection,
@@ -15138,7 +15158,7 @@
 	
 	var CallbackQueue = __webpack_require__(181);
 	var PooledClass = __webpack_require__(82);
-	var ReactBrowserEventEmitter = __webpack_require__(131);
+	var ReactBrowserEventEmitter = __webpack_require__(130);
 	var ReactInputSelection = __webpack_require__(182);
 	var ReactPutListenerQueue = __webpack_require__(183);
 	var Transaction = __webpack_require__(172);
@@ -15982,7 +16002,7 @@
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(130);
+	var DOMProperty = __webpack_require__(129);
 	
 	var MUST_USE_ATTRIBUTE = DOMProperty.injection.MUST_USE_ATTRIBUTE;
 	
@@ -16142,7 +16162,7 @@
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(130);
+	var DOMProperty = __webpack_require__(129);
 	var ReactDefaultPerfAnalysis = __webpack_require__(194);
 	var ReactMount = __webpack_require__(54);
 	var ReactPerf = __webpack_require__(55);
@@ -16431,44 +16451,6 @@
 
 /***/ },
 /* 129 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule emptyFunction
-	 */
-	
-	function makeEmptyFunction(arg) {
-	  return function() {
-	    return arg;
-	  };
-	}
-	
-	/**
-	 * This function accepts and discards inputs; it has no side effects. This is
-	 * primarily useful idiomatically for overridable function endpoints which
-	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
-	 */
-	function emptyFunction() {}
-	
-	emptyFunction.thatReturns = makeEmptyFunction;
-	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-	emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-	emptyFunction.thatReturnsThis = function() { return this; };
-	emptyFunction.thatReturnsArgument = function(arg) { return arg; };
-	
-	module.exports = emptyFunction;
-
-
-/***/ },
-/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -16770,7 +16752,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(78)))
 
 /***/ },
-/* 131 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -17127,7 +17109,7 @@
 
 
 /***/ },
-/* 132 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -17225,7 +17207,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(78)))
 
 /***/ },
-/* 133 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -17277,7 +17259,7 @@
 
 
 /***/ },
-/* 134 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -17562,7 +17544,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(78)))
 
 /***/ },
-/* 135 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -17610,7 +17592,7 @@
 
 
 /***/ },
-/* 136 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -17649,7 +17631,7 @@
 
 
 /***/ },
-/* 137 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -17667,7 +17649,7 @@
 	'use strict';
 	
 	var ReactCompositeComponent = __webpack_require__(201);
-	var ReactEmptyComponent = __webpack_require__(132);
+	var ReactEmptyComponent = __webpack_require__(131);
 	var ReactNativeComponent = __webpack_require__(94);
 	
 	var assign = __webpack_require__(59);
@@ -17789,7 +17771,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(78)))
 
 /***/ },
-/* 138 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -17882,7 +17864,7 @@
 
 
 /***/ },
-/* 139 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -17989,6 +17971,44 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(78)))
 
 /***/ },
+/* 139 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule emptyFunction
+	 */
+	
+	function makeEmptyFunction(arg) {
+	  return function() {
+	    return arg;
+	  };
+	}
+	
+	/**
+	 * This function accepts and discards inputs; it has no side effects. This is
+	 * primarily useful idiomatically for overridable function endpoints which
+	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+	 */
+	function emptyFunction() {}
+	
+	emptyFunction.thatReturns = makeEmptyFunction;
+	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+	emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+	emptyFunction.thatReturnsThis = function() { return this; };
+	emptyFunction.thatReturnsArgument = function(arg) { return arg; };
+	
+	module.exports = emptyFunction;
+
+
+/***/ },
 /* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -18087,7 +18107,7 @@
 	var Transaction = __webpack_require__(172);
 	
 	var assign = __webpack_require__(59);
-	var emptyFunction = __webpack_require__(129);
+	var emptyFunction = __webpack_require__(139);
 	
 	/**
 	 * Provides a `CallbackQueue` queue for collecting `onDOMReady` callbacks
@@ -20591,7 +20611,7 @@
 	var PooledClass = __webpack_require__(82);
 	
 	var assign = __webpack_require__(59);
-	var emptyFunction = __webpack_require__(129);
+	var emptyFunction = __webpack_require__(139);
 	var getEventTarget = __webpack_require__(178);
 	
 	/**
@@ -21164,7 +21184,7 @@
 	
 	'use strict';
 	
-	var ReactBrowserEventEmitter = __webpack_require__(131);
+	var ReactBrowserEventEmitter = __webpack_require__(130);
 	
 	var accumulateInto = __webpack_require__(216);
 	var forEachAccumulated = __webpack_require__(217);
@@ -21530,7 +21550,7 @@
 	 * @typechecks
 	 */
 	
-	var emptyFunction = __webpack_require__(129);
+	var emptyFunction = __webpack_require__(139);
 	
 	/**
 	 * Upstream version of event listener. Does not take into account specific
@@ -21865,7 +21885,7 @@
 	
 	var ReactDOMSelection = __webpack_require__(223);
 	
-	var containsNode = __webpack_require__(135);
+	var containsNode = __webpack_require__(134);
 	var focusNode = __webpack_require__(220);
 	var getActiveElement = __webpack_require__(184);
 	
@@ -22003,7 +22023,7 @@
 	'use strict';
 	
 	var PooledClass = __webpack_require__(82);
-	var ReactBrowserEventEmitter = __webpack_require__(131);
+	var ReactBrowserEventEmitter = __webpack_require__(130);
 	
 	var assign = __webpack_require__(59);
 	
@@ -23299,12 +23319,12 @@
 	var ReactPropTypeLocations = __webpack_require__(89);
 	var ReactPropTypeLocationNames = __webpack_require__(90);
 	var ReactReconciler = __webpack_require__(57);
-	var ReactUpdates = __webpack_require__(134);
+	var ReactUpdates = __webpack_require__(133);
 	
 	var assign = __webpack_require__(59);
 	var emptyObject = __webpack_require__(93);
 	var invariant = __webpack_require__(65);
-	var shouldUpdateReactComponent = __webpack_require__(139);
+	var shouldUpdateReactComponent = __webpack_require__(138);
 	var warning = __webpack_require__(68);
 	
 	function getDeclarationErrorAddendum(component) {
@@ -25198,8 +25218,8 @@
 	var ReactReconciler = __webpack_require__(57);
 	
 	var flattenChildren = __webpack_require__(231);
-	var instantiateReactComponent = __webpack_require__(137);
-	var shouldUpdateReactComponent = __webpack_require__(139);
+	var instantiateReactComponent = __webpack_require__(136);
+	var shouldUpdateReactComponent = __webpack_require__(138);
 	
 	/**
 	 * ReactChildReconciler provides helpers for initializing or updating a set of
@@ -25560,7 +25580,7 @@
 	var ExecutionEnvironment = __webpack_require__(62);
 	
 	var createNodesFromMarkup = __webpack_require__(232);
-	var emptyFunction = __webpack_require__(129);
+	var emptyFunction = __webpack_require__(139);
 	var getMarkupWrap = __webpack_require__(233);
 	var invariant = __webpack_require__(65);
 	
@@ -25746,7 +25766,7 @@
 	
 	var ExecutionEnvironment = __webpack_require__(62);
 	var escapeTextContentForBrowser = __webpack_require__(100);
-	var setInnerHTML = __webpack_require__(138);
+	var setInnerHTML = __webpack_require__(137);
 	
 	/**
 	 * Set the textContent property of a node, ensuring that whitespace is preserved
