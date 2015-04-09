@@ -6,7 +6,9 @@ var ArticlesStore = require('../stores/ArticlesStore');
 //console.log(document.location.origin);
 //console.log(this.context.router.getCurrentParams()['articleId'])
 var SingleArticleComponent = React.createClass({
- 
+  articleContent:function() {
+    return { __html: this.props.article.content }
+  },
   render: function() {
    // console.log(this.props.article)
     
@@ -15,7 +17,7 @@ var SingleArticleComponent = React.createClass({
           <div className="">
               <h1>{this.props.article.title}</h1>
               <a href="#">{this.props.article.url}</a>
-              <p> {this.props.article.content} </p>
+              <div dangerouslySetInnerHTML={this.articleContent()}/>
           </div>
         </div>
     );

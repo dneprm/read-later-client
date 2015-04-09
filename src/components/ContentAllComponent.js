@@ -14,6 +14,7 @@ var ContentAllComponent = React.createClass({
   },
   render: function() {
     //console.log(this.state.articles);
+    
     /*var articleList = this.state.articles.map(function(article, index){
       return (<ArticleComponent article={article} key={index} />)
     }.bind(this));*/

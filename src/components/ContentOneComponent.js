@@ -16,7 +16,7 @@ var ContentOneComponent = React.createClass({
     router: React.PropTypes.func
   },
   render: function() {
-    console.log(this.state.article)
+    //console.log(this.state.article)
     //console.log(a);
     return (
       <div className="contentWrapper">

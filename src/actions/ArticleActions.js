@@ -3,8 +3,9 @@ var Reflux = require('reflux');
 //var Backend = require('../utils/backend');
 
 var Actions = Reflux.createActions([
-  "receiveArticleData"
-  
+  "receiveArticleData",
+  "addUrl",
+  "removeArticle"
 ]);
 
 /*Actions.addToCart.preEmit = Backend.add;

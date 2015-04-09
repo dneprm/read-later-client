@@ -14,6 +14,7 @@ var FirebaseStore = Reflux.createStore({
   receiveArticlesData: function(snapshot) {
     this.trigger(snapshot.val());
   }
+  
 });
 
 module.exports = FirebaseStore;
