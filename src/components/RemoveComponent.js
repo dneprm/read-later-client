@@ -20,7 +20,8 @@ var RemoveComponent = React.createClass({
     //console.log(this.context.router.getCurrentParams()['articleId'])
     return (
       <div className="showAll">
-         <Link to="app" onClick={this.removeArticle} >Remove</Link>
+      
+       <div onClick={this.removeArticle}> <Link to="app" > Remove</Link></div>
       </div>
     );
   }

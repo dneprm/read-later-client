@@ -4,6 +4,7 @@ var request = require('superagent');
 
 var Actions = require('../actions/ArticleActions');
 var FirebaseStore = require('../stores/FirebaseStore');
+var FirebaseActions = require('../actions/FirebaseActions');
 var Firebase = require('firebase');
 var fb = new Firebase("https://glaring-fire-8850.firebaseio.com/").child('articles');
 
@@ -27,7 +28,7 @@ var ArticlesStore = Reflux.createStore({
     }.bind(this))
   },
   removeArticle: function(id) {
-    fb.child(id).remove();
+    FirebaseActions.removeArticle(id);
   },
   getArticle: function(id) {
     var arr=[];

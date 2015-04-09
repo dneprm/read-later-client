@@ -288,6 +288,7 @@
 	
 	var Actions = __webpack_require__(40);
 	var FirebaseStore = __webpack_require__(41);
+	var FirebaseActions = __webpack_require__(79);
 	var Firebase = __webpack_require__(77);
 	var fb = new Firebase("https://glaring-fire-8850.firebaseio.com/").child("articles");
 	
@@ -306,7 +307,7 @@
 	    }).bind(this));
 	  },
 	  removeArticle: function removeArticle(id) {
-	    fb.child(id).remove();
+	    FirebaseActions.removeArticle(id);
 	  },
 	  getArticle: function getArticle(id) {
 	    var arr = [];
@@ -2836,9 +2837,14 @@
 	      "div",
 	      { className: "showAll" },
 	      React.createElement(
-	        Link,
-	        { to: "app", onClick: this.removeArticle },
-	        "Remove"
+	        "div",
+	        { onClick: this.removeArticle },
+	        " ",
+	        React.createElement(
+	          Link,
+	          { to: "app" },
+	          " Remove"
+	        )
 	      )
 	    );
 	  }
@@ -2949,6 +2955,7 @@
 	
 	var Firebase = __webpack_require__(77);
 	var fb = new Firebase("https://glaring-fire-8850.firebaseio.com/");
+	var fbChild = fb.child("articles");
 	
 	var FirebaseStore = Reflux.createStore({
 	  listenables: Actions,
@@ -2957,6 +2964,9 @@
 	  },
 	  receiveArticlesData: function receiveArticlesData(snapshot) {
 	    this.trigger(snapshot.val());
+	  },
+	  removeArticle: function removeArticle(id) {
+	    fbChild.child(id + "/").remove();
 	  }
 	
 	});
