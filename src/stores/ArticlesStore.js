@@ -3,6 +3,7 @@ var assign = require('object-assign');
 var request = require('superagent');
 
 var Actions = require('../actions/ArticleActions');
+var FilterStore = require('../stores/FilterStore');
 var FirebaseStore = require('../stores/FirebaseStore');
 var FirebaseActions = require('../actions/FirebaseActions');
 var Firebase = require('firebase');
@@ -14,6 +15,8 @@ var ArticlesStore = Reflux.createStore({
   listenables: Actions,
   init: function() {
     this.listenTo(FirebaseStore, Actions.receiveArticleData);
+    this.listenTo(FilterStore, Actions.changeArticlesView);
+    this.flag = FilterStore.getFilterState();
     //this.articles= {};
   },
   receiveArticleData: function(articles) {
@@ -28,6 +31,9 @@ var ArticlesStore = Reflux.createStore({
     .end(function(err, res){   
       this.trigger(res['text']);
     }.bind(this))
+  },
+  changeArticlesView: function() { 
+    this.trigger(this.getArticles())
   },
   getArticle: function(id) {
     var arr=[];
@@ -44,7 +50,7 @@ var ArticlesStore = Reflux.createStore({
          return article.id == id
     })[0]; 
     return singleArticle;
-    console.log(singleArticle)
+    //console.log(singleArticle)
   },
   getArticles: function() {
     var arr=[];
@@ -57,7 +63,18 @@ var ArticlesStore = Reflux.createStore({
       arr.push(articleObj);
     }
     //console.log(dataObj);
-    return arr;
+    //console.log(arr);
+    //return arr;
+    var articlesArr;
+    if (this.flag.viewState==="unread") {
+      articlesArr = arr.filter(function(article){
+        return article.readState == false;
+      });
+    } else if (this.flag.viewState==="all") {
+      articlesArr = arr;
+    }
+    console.log(articlesArr)
+    return articlesArr;
   }
 });
 

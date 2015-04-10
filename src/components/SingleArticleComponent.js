@@ -15,7 +15,7 @@ var SingleArticleComponent = React.createClass({
   },
   render: function() {
    //console.log(this.props.article)
-    console.log(this.props.article.title)
+   // console.log(this.props.article.title)
     return (
      <div className="">
           <div className="">

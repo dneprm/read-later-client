@@ -4,7 +4,8 @@ var Reflux = require('reflux');
 
 var Actions = Reflux.createActions([
   "receiveArticleData",
-  "addUrl"
+  "addUrl",
+  "changeArticlesView"
 ]);
 
 module.exports = Actions;

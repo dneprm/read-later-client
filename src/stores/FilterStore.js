@@ -5,10 +5,17 @@ var FilterActions = require('../actions/FilterActions');
 var FilterStore = Reflux.createStore({
   listenables: FilterActions,
   init: function() {
-    this.filter= {filterState: true};
+    this.filter= {viewState: "unread"};
   },
-  changeFilterState: function(state) {
-    this.filter.filterState = !state;
+  changeViewAllState: function(state) {
+    console.log(this.filter.viewState)
+    if (state==="unread") {
+      this.filter.viewState = "all";
+    } else if (state==="all") {
+      this.filter.viewState = "unread";
+    }
+    console.log(this.filter.viewState)
+    //console.log(this.filter)
     this.trigger(this.filter);
   },
   getFilterState: function() {
