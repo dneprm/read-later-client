@@ -45,12 +45,11 @@ var ArticlesStore = Reflux.createStore({
       var articleObj = assign({}, dataObj[key], idObj);
       arr.push(articleObj);
     }
-   // console.log(dataObj);
+  
     var singleArticle = arr.filter(function(article){
          return article.id == id
     })[0]; 
     return singleArticle;
-    //console.log(singleArticle)
   },
   getArticles: function() {
     var arr=[];
@@ -74,7 +73,18 @@ var ArticlesStore = Reflux.createStore({
       articlesArr = arr;
     }
     //console.log(articlesArr)
-    return articlesArr;
+    //return articlesArr;
+    var articlesForViewArr=[];
+    if (this.flag.searchState ==="") {
+      articlesForViewArr = articlesArr;
+    } else {
+      articlesForViewArr = articlesArr.filter(function(article){
+        console.log(article.title)
+        return article.title.toLowerCase().indexOf(this.flag.searchState.toLowerCase()) !== -1 ||                      article.url.toLowerCase().indexOf(this.flag.searchState.toLowerCase()) !== -1;
+      }.bind(this));
+    }
+    //console.log(articlesForViewArr)
+    return articlesForViewArr;
   }
 });
 

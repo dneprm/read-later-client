@@ -1,7 +1,8 @@
 var Reflux = require('reflux');
 
 var Actions = Reflux.createActions([
-  "changeViewAllState"
+  "changeViewAllState",
+  "changeSearchState"
 ]);
 
 

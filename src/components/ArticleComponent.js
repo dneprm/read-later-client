@@ -26,6 +26,7 @@ var ArticleComponent = React.createClass({
   },*/
   render: function() {
    //console.log(this.props.article);
+    console.log("working");
     return (
         <div className="article">
           <div className="article-header-content">

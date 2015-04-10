@@ -332,12 +332,11 @@
 	      var articleObj = assign({}, dataObj[key], idObj);
 	      arr.push(articleObj);
 	    }
-	    // console.log(dataObj);
+	
 	    var singleArticle = arr.filter(function (article) {
 	      return article.id == id;
 	    })[0];
 	    return singleArticle;
-	    //console.log(singleArticle)
 	  },
 	  getArticles: function getArticles() {
 	    var arr = [];
@@ -361,7 +360,18 @@
 	      articlesArr = arr;
 	    }
 	    //console.log(articlesArr)
-	    return articlesArr;
+	    //return articlesArr;
+	    var articlesForViewArr = [];
+	    if (this.flag.searchState === "") {
+	      articlesForViewArr = articlesArr;
+	    } else {
+	      articlesForViewArr = articlesArr.filter((function (article) {
+	        console.log(article.title);
+	        return article.title.toLowerCase().indexOf(this.flag.searchState.toLowerCase()) !== -1 || article.url.toLowerCase().indexOf(this.flag.searchState.toLowerCase()) !== -1;
+	      }).bind(this));
+	    }
+	    //console.log(articlesForViewArr)
+	    return articlesForViewArr;
 	  }
 	});
 	
@@ -481,6 +491,7 @@
 	  },*/
 	  render: function render() {
 	    //console.log(this.props.article);
+	    console.log("working");
 	    return React.createElement(
 	      "div",
 	      { className: "article" },
@@ -2971,15 +2982,31 @@
 	"use strict";
 	
 	var React = __webpack_require__(4);
+	var Reflux = __webpack_require__(12);
+	
+	var Actions = __webpack_require__(81);
+	var FilterStore = __webpack_require__(41);
 	
 	var SearchComponent = React.createClass({
 	  displayName: "SearchComponent",
 	
+	  mixins: [Reflux.connect(FilterStore)],
+	  getInitialState: function getInitialState() {
+	    return { filter: FilterStore.getFilterState() };
+	  },
+	  changeArticlesView: function changeArticlesView(event) {
+	    event.preventDefault();
+	    var value = this.refs.search.getDOMNode().value.trim();
+	    //this.refs.search.getDOMNode().value = '';
+	    console.log(value);
+	    Actions.changeSearchState(value);
+	  },
 	  render: function render() {
+	    console.log(this.state.filter);
 	    return React.createElement(
 	      "div",
 	      { className: "search" },
-	      React.createElement("input", { type: "search", placeholder: "Search" })
+	      React.createElement("input", { type: "text", placeholder: "Search", ref: "search", onChange: this.changeArticlesView })
 	    );
 	  }
 	});
@@ -3012,17 +3039,23 @@
 	var FilterStore = Reflux.createStore({
 	  listenables: FilterActions,
 	  init: function init() {
-	    this.filter = { viewState: "unread" };
+	    this.filter = { viewState: "unread", searchState: "" };
 	  },
 	  changeViewAllState: function changeViewAllState(state) {
-	    console.log(this.filter.viewState);
+	    //console.log(this.filter.viewState)
 	    if (state === "unread") {
 	      this.filter.viewState = "all";
 	    } else if (state === "all") {
 	      this.filter.viewState = "unread";
 	    }
-	    console.log(this.filter.viewState);
+	    //console.log(this.filter.viewState)
 	    //console.log(this.filter)
+	    this.trigger(this.filter);
+	  },
+	  changeSearchState: function changeSearchState(value) {
+	    console.log(value);
+	    //if (value==="") return;
+	    this.filter.searchState = value;
 	    this.trigger(this.filter);
 	  },
 	  getFilterState: function getFilterState() {
@@ -9194,7 +9227,7 @@
 	
 	var Reflux = __webpack_require__(12);
 	
-	var Actions = Reflux.createActions(["changeViewAllState"]);
+	var Actions = Reflux.createActions(["changeViewAllState", "changeSearchState"]);
 	
 	module.exports = Actions;
 
