@@ -8,7 +8,7 @@ var ArticlesStore = require('../stores/ArticlesStore');
 var SingleArticleComponent = React.createClass({
  
   articleContent:function() {
-    return { __html: this.props.article.content }
+    return { __html: this.props.article.content ? this.props.article.content: "" }
   },
   render: function() {
    // console.log(this.props.article)

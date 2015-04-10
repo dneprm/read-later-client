@@ -11,10 +11,14 @@ var ArticleComponent = React.createClass({
   makeContentShort: function() {
     var context = this.props.article.content;
     var replaceSymbol = /<[^>]+>/g;
-    context = context.replace(replaceSymbol, "");
-    var shortBody = context.substr(0,250)+"...";
+    if (context) {
+      var replaceSymbol = /<[^>]+>/g;
+      context = context.replace(replaceSymbol, "");
+      var shortBody = context.substr(0,250)+"...";
+      return shortBody;
+    } 
 
-    return shortBody;
+    //return shortBody;
    /* var contentShort = this.props.article.content.slice(0,250) + "...";
       return contentShort;*/
     },
