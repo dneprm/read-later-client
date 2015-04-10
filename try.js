@@ -14,10 +14,19 @@ function start () {
 
 start();*/
 
-var Firebase = require('firebase');
+/*var Firebase = require('firebase');
 var fb = new Firebase("https://glaring-fire-8850.firebaseio.com/").child("articles");
-fb.child("-JmPVe2tsQpyBo8smtWU").remove();
+fb.child("-JmPVe2tsQpyBo8smtWU").remove();*/
+var arr = [{name: "mariya"}, {name:"irina"}, {name: 'kate'}, {name: "mariya"}]; 
 
 
+var arrFilt = arr.filter(function(article) {
+  return article.name == 'mariya';
+});
+console.log(arrFilt);
+
+/*var singleArticle = arr.filter(function(article){
+         return article.id == id
+    })[0];*/
 
 

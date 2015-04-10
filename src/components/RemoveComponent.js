@@ -2,7 +2,7 @@ var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
 
-var Actions = require('../actions/ArticleActions');
+var Actions = require('../actions/FirebaseActions');
 
 var RemoveComponent = React.createClass({
   removeArticle: function(event) {

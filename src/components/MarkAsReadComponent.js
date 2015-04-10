@@ -1,6 +1,6 @@
 var React = require('react');
 var Reflux = require('reflux');
-var Actions = require('../actions/ArticleActions');
+var Actions = require('../actions/FirebaseActions');
 var ArticlesStore = require('../stores/ArticlesStore');
 
 
@@ -22,7 +22,7 @@ var MarkAsReadComponent = React.createClass({
     var id = this.context.router.getCurrentParams()['articleId'];
     //console.log(id);
     //console.log(newValue);
-    Actions.changeArticleReadState(id, newValue);
+    Actions.updateArticle(id, newValue);
   },
   contextTypes: {
     router: React.PropTypes.func

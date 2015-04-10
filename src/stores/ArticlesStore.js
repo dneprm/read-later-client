@@ -29,12 +29,6 @@ var ArticlesStore = Reflux.createStore({
       this.trigger(res['text']);
     }.bind(this))
   },
-  removeArticle: function(id) {
-    FirebaseActions.removeArticle(id);
-  },
-  changeArticleReadState: function(id, newValue) {
-    FirebaseActions.updateArticle(id, newValue);
-  },
   getArticle: function(id) {
     var arr=[];
     var dataObj = this.articles;

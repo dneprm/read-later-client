@@ -307,12 +307,6 @@
 	      this.trigger(res.text);
 	    }).bind(this));
 	  },
-	  removeArticle: function removeArticle(id) {
-	    FirebaseActions.removeArticle(id);
-	  },
-	  changeArticleReadState: function changeArticleReadState(id, newValue) {
-	    FirebaseActions.updateArticle(id, newValue);
-	  },
 	  getArticle: function getArticle(id) {
 	    var arr = [];
 	    var dataObj = this.articles;
@@ -441,17 +435,18 @@
 	  displayName: "ArticleComponent",
 	
 	  makeContentShort: function makeContentShort() {
-	    /*var context = this.props.article.content;
+	    var context = this.props.article.content;
 	    var replaceSymbol = /<[^>]+>/g;
 	    context = context.replace(replaceSymbol, "");
-	    var shortBody = context.substr(0,300)+"...";
-	     return shortBody;*/
-	    var contentShort = this.props.article.content.slice(0, 250) + "...";
-	    return contentShort;
+	    var shortBody = context.substr(0, 250) + "...";
+	
+	    return shortBody;
+	    /* var contentShort = this.props.article.content.slice(0,250) + "...";
+	       return contentShort;*/
 	  },
-	  articleContent: function articleContent() {
-	    return { __html: this.props.article.content };
-	  },
+	  /*articleContent:function() {
+	    return { __html: this.props.article.content }
+	  },*/
 	  render: function render() {
 	    //console.log(this.props.article);
 	    return React.createElement(
@@ -469,7 +464,11 @@
 	            this.props.article.title
 	          )
 	        ),
-	        React.createElement("div", { dangerouslySetInnerHTML: this.articleContent() })
+	        React.createElement(
+	          "div",
+	          null,
+	          this.makeContentShort()
+	        )
 	      ),
 	      React.createElement(
 	        "div",
@@ -2802,7 +2801,7 @@
 	var Router = __webpack_require__(5);
 	var Link = Router.Link;
 	
-	var Actions = __webpack_require__(40);
+	var Actions = __webpack_require__(42);
 	
 	var RemoveComponent = React.createClass({
 	  displayName: "RemoveComponent",
@@ -2847,7 +2846,7 @@
 	
 	var React = __webpack_require__(4);
 	var Reflux = __webpack_require__(12);
-	var Actions = __webpack_require__(40);
+	var Actions = __webpack_require__(42);
 	var ArticlesStore = __webpack_require__(7);
 	
 	var MarkAsReadComponent = React.createClass({
@@ -2870,7 +2869,7 @@
 	    var id = this.context.router.getCurrentParams().articleId;
 	    //console.log(id);
 	    //console.log(newValue);
-	    Actions.changeArticleReadState(id, newValue);
+	    Actions.updateArticle(id, newValue);
 	  },
 	  contextTypes: {
 	    router: React.PropTypes.func
@@ -2949,7 +2948,7 @@
 	var Reflux = __webpack_require__(12);
 	//var Backend = require('../utils/backend');
 	
-	var Actions = Reflux.createActions(["receiveArticleData", "addUrl", "removeArticle", "changeArticleReadState"]);
+	var Actions = Reflux.createActions(["receiveArticleData", "addUrl"]);
 	
 	module.exports = Actions;
 
