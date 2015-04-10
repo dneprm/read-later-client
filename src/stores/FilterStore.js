@@ -5,15 +5,16 @@ var FilterActions = require('../actions/FilterActions');
 var FilterStore = Reflux.createStore({
   listenables: FilterActions,
   init: function() {
-    this.readState: {}
+    this.filter= {filterState: true};
   },
-  receiveArticlesData: function(snapshot) {
-    this.trigger(snapshot.val());
+  changeFilterState: function(state) {
+    this.filter.filterState = !state;
+    this.trigger(this.filter);
   },
-  removeArticle: function(id) {
-    fbChild.child(id + "/").remove();
+  getFilterState: function() {
+   return this.filter;
   }
-  
 });
 
-module.exports = FirebaseStore;
+module.exports = FilterStore;
+

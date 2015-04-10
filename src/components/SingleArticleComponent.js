@@ -7,12 +7,15 @@ var ArticlesStore = require('../stores/ArticlesStore');
 //console.log(this.context.router.getCurrentParams()['articleId'])
 var SingleArticleComponent = React.createClass({
  
-  articleContent:function() {
+  /*articleContent:function() {
     return { __html: this.props.article.content ? this.props.article.content: "" }
+  },*/
+  articleContent:function() {
+    return { __html: this.props.article.content }
   },
   render: function() {
-   // console.log(this.props.article)
-    
+   //console.log(this.props.article)
+    console.log(this.props.article.title)
     return (
      <div className="">
           <div className="">

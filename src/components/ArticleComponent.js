@@ -10,7 +10,6 @@ var Link = Router.Link;
 var ArticleComponent = React.createClass({
   makeContentShort: function() {
     var context = this.props.article.content;
-    var replaceSymbol = /<[^>]+>/g;
     if (context) {
       var replaceSymbol = /<[^>]+>/g;
       context = context.replace(replaceSymbol, "");
