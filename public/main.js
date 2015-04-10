@@ -360,7 +360,7 @@
 	    } else if (this.flag.viewState === "all") {
 	      articlesArr = arr;
 	    }
-	    console.log(articlesArr);
+	    //console.log(articlesArr)
 	    return articlesArr;
 	  }
 	});
@@ -480,7 +480,7 @@
 	    return { __html: this.props.article.content }
 	  },*/
 	  render: function render() {
-	    console.log(this.props.article);
+	    //console.log(this.props.article);
 	    return React.createElement(
 	      "div",
 	      { className: "article" },

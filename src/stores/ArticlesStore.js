@@ -73,7 +73,7 @@ var ArticlesStore = Reflux.createStore({
     } else if (this.flag.viewState==="all") {
       articlesArr = arr;
     }
-    console.log(articlesArr)
+    //console.log(articlesArr)
     return articlesArr;
   }
 });
