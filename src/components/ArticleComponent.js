@@ -25,8 +25,7 @@ var ArticleComponent = React.createClass({
     return { __html: this.props.article.content }
   },*/
   render: function() {
-   //console.log(this.props.article);
-    console.log("working");
+   //console.log(this.props.article.url.trim());
     return (
         <div className="article">
           <div className="article-header-content">
@@ -36,7 +35,7 @@ var ArticleComponent = React.createClass({
             <div>{this.makeContentShort()}</div>
           </div>
           <div className="article-footer">
-            <a href="#">{this.props.article.url}</a>
+            <a href={this.props.article.url}>{this.props.article.url}</a>
           </div>
         </div>
     );

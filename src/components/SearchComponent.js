@@ -13,11 +13,11 @@ var SearchComponent = React.createClass({
     event.preventDefault();
     var value = this.refs.search.getDOMNode().value.trim();
     //this.refs.search.getDOMNode().value = '';
-    console.log(value);
+    //console.log(value);
     Actions.changeSearchState(value);
   },
   render: function() {
-    console.log(this.state.filter);
+   // console.log(this.state.filter);
     return (
       <div className="search">
         <input type="text" placeholder="Search" ref="search" onChange={this.changeArticlesView}></input>

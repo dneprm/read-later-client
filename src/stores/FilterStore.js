@@ -19,8 +19,7 @@ var FilterStore = Reflux.createStore({
     this.trigger(this.filter);
   },
   changeSearchState:  function(value) {
-    console.log(value);
-    //if (value==="") return;
+    //console.log(value);
     this.filter.searchState = value;
     this.trigger(this.filter);
   },

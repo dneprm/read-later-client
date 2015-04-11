@@ -10,9 +10,6 @@ a {
   text-decoration: none;
   padding: 10px;
 }
-a:hover {
-  background-color: #b3d4fc;
-}
 input {
  
 }
@@ -68,6 +65,9 @@ input {
   letter-spacing: .08em;
   padding: 10px;
   text-transform: uppercase;
+}
+.showAll a:hover {
+  background-color: #b3d4fc;
 }
 .search {
   display: inline-block;

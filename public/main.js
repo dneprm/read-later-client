@@ -424,15 +424,13 @@
 	var SingleArticleComponent = React.createClass({
 	  displayName: "SingleArticleComponent",
 	
-	  /*articleContent:function() {
-	    return { __html: this.props.article.content ? this.props.article.content: "" }
-	  },*/
 	  articleContent: function articleContent() {
 	    return { __html: this.props.article.content };
 	  },
 	  render: function render() {
 	    //console.log(this.props.article)
 	    // console.log(this.props.article.title)
+	    //console.log(this.props.article.url)
 	    return React.createElement(
 	      "div",
 	      { className: "" },
@@ -446,7 +444,7 @@
 	        ),
 	        React.createElement(
 	          "a",
-	          { href: "#" },
+	          { href: this.props.article.url },
 	          this.props.article.url
 	        ),
 	        React.createElement("div", { dangerouslySetInnerHTML: this.articleContent() })
@@ -490,8 +488,7 @@
 	    return { __html: this.props.article.content }
 	  },*/
 	  render: function render() {
-	    //console.log(this.props.article);
-	    console.log("working");
+	    //console.log(this.props.article.url.trim());
 	    return React.createElement(
 	      "div",
 	      { className: "article" },
@@ -518,7 +515,7 @@
 	        { className: "article-footer" },
 	        React.createElement(
 	          "a",
-	          { href: "#" },
+	          { href: this.props.article.url },
 	          this.props.article.url
 	        )
 	      )
@@ -2998,11 +2995,11 @@
 	    event.preventDefault();
 	    var value = this.refs.search.getDOMNode().value.trim();
 	    //this.refs.search.getDOMNode().value = '';
-	    console.log(value);
+	    //console.log(value);
 	    Actions.changeSearchState(value);
 	  },
 	  render: function render() {
-	    console.log(this.state.filter);
+	    // console.log(this.state.filter);
 	    return React.createElement(
 	      "div",
 	      { className: "search" },
@@ -3053,8 +3050,7 @@
 	    this.trigger(this.filter);
 	  },
 	  changeSearchState: function changeSearchState(value) {
-	    console.log(value);
-	    //if (value==="") return;
+	    //console.log(value);
 	    this.filter.searchState = value;
 	    this.trigger(this.filter);
 	  },
