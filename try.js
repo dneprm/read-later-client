@@ -25,7 +25,7 @@ var arrFilt = arr.filter(function(article) {
 });
 console.log(arrFilt);*/
 
-var a = "heYou";
+/*var a = "heYou";
 var b = "You";
 var c = "y";
 var d = "Y";
@@ -33,6 +33,9 @@ var e = "he";
 console.log(a.indexOf(b));
 console.log(a.indexOf(c));
 console.log(a.indexOf(d));
-console.log(a.indexOf(e));
+console.log(a.indexOf(e));*/
+
+var url = /(\w+):\/\/([\w.]+)\/(\S*)/;
+console.log(url);
 
 

@@ -28,9 +28,7 @@ var ArticlesStore = Reflux.createStore({
     request.post('http://mysterious-depths-6243.herokuapp.com/scraper')
     .type('form')
     .send({url:url})
-    .end(function(err, res){   
-      this.trigger(res['text']);
-    }.bind(this))
+    .end()
   },
   changeArticlesView: function() { 
     this.trigger(this.getArticles())

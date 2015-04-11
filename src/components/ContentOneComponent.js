@@ -7,8 +7,13 @@ var ArticlesStore = require('../stores/ArticlesStore');
 
 
 var ContentOneComponent = React.createClass({
-  mixins: [Reflux.connect(ArticlesStore, 'article')],
-  
+  //mixins: [Reflux.connect(ArticlesStore, 'article')],
+  mixins: [Reflux.connect(ArticlesStore, 'onChangeArticle')],
+  onChangeArticle: function() {
+    this.setState({ 
+      article: ArticlesStore.getArticle(this.context.router.getCurrentParams()['articleId']
+    )});
+  },
   getInitialState: function() {
     return { article: ArticlesStore.getArticle(this.context.router.getCurrentParams()['articleId']) };
   },

@@ -118,8 +118,12 @@
 	var ContentOneComponent = React.createClass({
 	  displayName: "ContentOneComponent",
 	
-	  mixins: [Reflux.connect(ArticlesStore, "article")],
-	
+	  //mixins: [Reflux.connect(ArticlesStore, 'article')],
+	  mixins: [Reflux.connect(ArticlesStore, "onChangeArticle")],
+	  onChangeArticle: function onChangeArticle() {
+	    this.setState({
+	      article: ArticlesStore.getArticle(this.context.router.getCurrentParams().articleId) });
+	  },
 	  getInitialState: function getInitialState() {
 	    return { article: ArticlesStore.getArticle(this.context.router.getCurrentParams().articleId) };
 	  },
@@ -315,9 +319,7 @@
 	    this.trigger(this.getArticles());
 	  },
 	  addUrl: function addUrl(url) {
-	    request.post("http://mysterious-depths-6243.herokuapp.com/scraper").type("form").send({ url: url }).end((function (err, res) {
-	      this.trigger(res.text);
-	    }).bind(this));
+	    request.post("http://mysterious-depths-6243.herokuapp.com/scraper").type("form").send({ url: url }).end();
 	  },
 	  changeArticlesView: function changeArticlesView() {
 	    this.trigger(this.getArticles());

@@ -2,7 +2,12 @@ var express = require('express');
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
+app.use(function(req, res, next) {
+  //if(req.params.url
+  next();
+})
 app.use(express.static(__dirname + '/public'));
+
 
 
 
