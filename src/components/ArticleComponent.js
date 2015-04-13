@@ -2,6 +2,8 @@ var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
 
+var parseUri = require('parseUri')
+
 //var Showdown = require('showdown');
 //var converter = new Showdown.converter();
 
@@ -24,6 +26,10 @@ var ArticleComponent = React.createClass({
   /*articleContent:function() {
     return { __html: this.props.article.content }
   },*/
+  shortUrl: function() {
+    var host = parseUri(this.props.article.url).host;
+    return host;
+  },
   render: function() {
    //console.log(this.props.article.url.trim());
     return (
@@ -35,7 +41,7 @@ var ArticleComponent = React.createClass({
             <div>{this.makeContentShort()}</div>
           </div>
           <div className="article-footer">
-            <a href={this.props.article.url}>{this.props.article.url}</a>
+            <a href={this.props.article.url}>{this.shortUrl()}</a>
           </div>
         </div>
     );
